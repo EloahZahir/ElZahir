@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>eL Zahir | Rare Art · Collectibles · Culture</title>
+
+<!-- SEO -->
+<meta name="description" content="eL Zahir is a nostalgic archive of rare collectibles, art, cinema, music, and cultural artifacts inspired by timeless traditions." />
+<link rel="canonical" href="https://elzahir.pages.dev" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="eL Zahir | Rare Culture Archive" />
+<meta property="og:description" content="Step into a 70s-inspired Middle Eastern world of rare collectibles, art, and nostalgia." />
+<meta property="og:image" content="https://elzahir.pages.dev/og/current.jpg" />
+<meta property="og:type" content="website" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://elzahir.pages.dev/og/current.jpg" />
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --sand:#e6d3a3;
+  --clay:#a05a2c;
+  --deep:#1c1a17;
+  --deep2:#14120f;
+  --olive:#4b5a3c;
+  --gold:#c6a55b;
+  --gold-light:#e2c27d;
+  --text:#f4ecd8;
+  --muted:#8c7c5a;
+  --card-bg:#242018;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--deep2);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+
+/* ─── GRAIN OVERLAY ─────────────────────────── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ─── NAV ───────────────────────────────────── */
+nav{
+  position:fixed;
+  width:100%;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(28,26,23,0.88);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(198,165,91,0.12);
+  z-index:100;
+}
+
+.logo{
+  font-family:'Playfair Display';
+  color:var(--gold);
+  font-size:1.25rem;
+  letter-spacing:.08em;
+}
+
+.logo span{
+  font-style:italic;
+  color:var(--gold-light);
+}
+
+nav a{
+  color:#cbbd9a;
+  margin-left:28px;
+  text-decoration:none;
+  font-size:.82rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition:color .25s;
+}
+
+nav a:hover{color:var(--gold-light);}
+
+/* ─── MARQUEE TICKER ────────────────────────── */
+.ticker{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:rgba(198,165,91,0.08);
+  border-top:1px solid rgba(198,165,91,0.2);
+  padding:8px 0;
+  z-index:100;
+  overflow:hidden;
+  backdrop-filter:blur(6px);
+}
+
+.ticker-track{
+  display:flex;
+  white-space:nowrap;
+  animation:ticker 30s linear infinite;
+}
+
+.ticker-track span{
+  font-family:'Cormorant Garamond';
+  font-size:.9rem;
+  color:var(--gold);
+  letter-spacing:.2em;
+  padding:0 60px;
+}
+
+@keyframes ticker{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* ─── HERO ──────────────────────────────────── */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:#1c1a17;
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+    url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80') center/cover no-repeat;
+  transform:scale(1.06);
+  animation:heroZoom 18s ease-in-out infinite alternate;
+  filter:sepia(0.5) contrast(1.1) brightness(0.55);
+}
+
+@keyframes heroZoom{
+  from{transform:scale(1.06)}
+  to{transform:scale(1.12)}
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(198,165,91,0.18), transparent 60%),
+    radial-gradient(ellipse at 70% 70%, rgba(160,90,44,0.12), transparent 55%),
+    linear-gradient(to bottom, rgba(20,18,15,0.3) 0%, rgba(20,18,15,0.7) 100%);
+}
+
+/* Decorative arch lines */
+.hero-arch{
+  position:absolute;
+  width:500px;
+  height:500px;
+  border:1px solid rgba(198,165,91,0.15);
+  border-radius:50%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.hero-arch:nth-child(2){width:650px;height:650px;border-color:rgba(198,165,91,0.08);}
+.hero-arch:nth-child(3){width:800px;height:800px;border-color:rgba(198,165,91,0.05);}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+.hero-eyebrow{
+  font-family:'Cormorant Garamond';
+  font-style:italic;
+  color:var(--gold);
+  letter-spacing:.35em;
+  font-size:.9rem;
+  text-transform:uppercase;
+  margin-bottom:20px;
+  opacity:0;
+  animation:fadeUp .9s .3s ease forwards;
+}
+
+.hero h1{
+  font-family:'Playfair Display';
+  font-size:clamp(3rem,8vw,6rem);
+  color:var(--sand);
+  line-height:1;
+  letter-spacing:.04em;
+  opacity:0;
+  animation:fadeUp 1s .55s ease forwards;
+}
+
+.hero h1 em{
+  font-style:italic;
+  color:var(--gold-light);
+}
+
+.hero p{
+  margin-top:22px;
+  font-family:'Cormorant Garamond';
+  font-size:1.25rem;
+  color:#c9b98a;
+  letter-spacing:.04em;
+  opacity:0;
+  animation:fadeUp .9s .8s ease forwards;
+}
+
+.hero-divider{
+  margin:28px auto 0;
+  width:60px;
+  height:1px;
+  background:linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity:0;
+  animation:fadeUp .8s 1s ease forwards;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ─── ORNAMENTAL DIVIDER ────────────────────── */
+.ornament{
+  text-align:center;
+  padding:30px 0 0;
+  color:var(--gold);
+  font-size:1.4rem;
+  opacity:.6;
+  letter-spacing:.3em;
+  user-select:none;
+}
+
+.ornament-line{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  max-width:500px;
+  margin:12px auto 60px;
+}
+
+.ornament-line::before,.ornament-line::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(to right, transparent, rgba(198,165,91,0.45), transparent);
+}
+
+.ornament-line span{
+  font-family:'Cormorant Garamond';
+  font-style:italic;
+  color:rgba(198,165,91,0.55);
+  font-size:.78rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+/* ─── SECTION ───────────────────────────────── */
+.section{
+  padding:100px 6%;
+}
+
+.section:nth-child(even){
+  background:rgba(255,255,255,0.012);
+}
+
+.title{
+  font-family:'Playfair Display';
+  font-size:2.4rem;
+  color:var(--gold);
+  margin-bottom:8px;
+  letter-spacing:.02em;
+}
+
+.title em{
+  font-style:italic;
+  color:var(--gold-light);
+}
+
+.section-sub{
+  font-family:'Cormorant Garamond';
+  font-style:italic;
+  color:var(--muted);
+  margin-bottom:44px;
+  font-size:1.05rem;
+  letter-spacing:.06em;
+}
+
+/* ─── GRID ──────────────────────────────────── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+
+.card{
+  background:var(--card-bg);
+  border-radius:10px;
+  overflow:hidden;
+  transition:transform .35s cubic-bezier(.22,.68,0,1.2), box-shadow .35s ease;
+  border:1px solid rgba(198,165,91,0.08);
+  position:relative;
+}
+
+.card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(198,165,91,0.07) 0%, transparent 60%);
+  opacity:0;
+  transition:opacity .35s;
+  pointer-events:none;
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(198,165,91,0.18);
+}
+
+.card:hover::after{opacity:1;}
+
+.card-img-wrap{
+  overflow:hidden;
+  height:220px;
+  position:relative;
+}
+
+.card-img-wrap::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:40%;
+  background:linear-gradient(to bottom, transparent, rgba(28,26,23,0.7));
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  filter:sepia(0.35) contrast(1.12) brightness(0.9);
+  transition:transform .5s ease, filter .4s ease;
+  display:block;
+}
+
+.card:hover img{
+  transform:scale(1.06);
+  filter:sepia(0.2) contrast(1.1) brightness(1.0);
+}
+
+.card-body{
+  padding:20px 20px 22px;
+}
+
+.card h3{
+  font-family:'Playfair Display';
+  color:var(--sand);
+  font-size:1.1rem;
+  margin-bottom:7px;
+  letter-spacing:.01em;
+}
+
+.card p{
+  font-size:.84rem;
+  color:#a09070;
+  line-height:1.55;
+}
+
+.card-tag{
+  display:inline-block;
+  margin-top:12px;
+  font-size:.68rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+  opacity:.6;
+  font-family:'Inter';
+  font-weight:600;
+}
+
+/* ─── FOOTER ────────────────────────────────── */
+footer{
+  padding:80px 6% 100px;
+  text-align:center;
+  color:#8c7c5a;
+  border-top:1px solid rgba(198,165,91,0.1);
+  position:relative;
+  overflow:hidden;
+}
+
+footer::before{
+  content:'';
+  position:absolute;
+  top:-200px;
+  left:50%;
+  transform:translateX(-50%);
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(198,165,91,0.04), transparent 70%);
+  pointer-events:none;
+}
+
+.footer-logo{
+  font-family:'Playfair Display';
+  font-size:2rem;
+  font-style:italic;
+  color:rgba(198,165,91,0.4);
+  margin-bottom:18px;
+  letter-spacing:.08em;
+}
+
+.footer-tagline{
+  font-family:'Cormorant Garamond';
+  font-style:italic;
+  font-size:1rem;
+  color:rgba(198,165,91,0.35);
+  letter-spacing:.15em;
+  margin-bottom:40px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:32px;
+  margin-bottom:40px;
+}
+
+.footer-links a{
+  color:rgba(198,165,91,0.35);
+  text-decoration:none;
+  font-size:.78rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  transition:color .25s;
+}
+
+.footer-links a:hover{color:var(--gold);}
+
+.footer-copy{
+  font-size:.75rem;
+  letter-spacing:.1em;
+  color:rgba(140,124,90,0.5);
+}
+
+/* ─── FADE ──────────────────────────────────── */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.fade.show{opacity:1;transform:none;}
+
+/* ─── RESPONSIVE ────────────────────────────── */
+@media(max-width:640px){
+  nav a{margin-left:14px;font-size:.75rem;}
+  .hero h1{font-size:3rem;}
+  .ticker-track span{padding:0 30px;}
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">e<span>L</span> Zahir</div>
+  <div>
+    <a href="#collectibles">Collectibles</a>
+    <a href="#art">Art</a>
+    <a href="#media">Media</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-arch"></div>
+  <div class="hero-arch"></div>
+  <div class="hero-arch"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Est. Archive · مجموعة نادرة</p>
+    <h1>e<em>L</em> Zahir</h1>
+    <p>A nostalgic archive of rare culture &amp; forgotten treasures</p>
+    <div class="hero-divider"></div>
+  </div>
+</section>
+
+<!-- ─── COLLECTIBLES ──────────────────────────── -->
+<section class="section fade" id="collectibles">
+  <div class="title">Rare <em>Collectibles</em></div>
+  <div class="section-sub">Objects of memory — preserved, not forgotten</div>
+
+  <div class="ornament">✦ ✦ ✦</div>
+  <div class="ornament-line"><span>Archive I</span></div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1608889175123-8ee362c1d8b3?w=600&q=80" alt="Vintage Star Wars">
+      </div>
+      <div class="card-body">
+        <h3>Vintage Star Wars</h3>
+        <p>Original figures and rare boxed treasures.</p>
+        <span class="card-tag">Toys · 1977–1985</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=600&q=80" alt="Board Games">
+      </div>
+      <div class="card-body">
+        <h3>Board Games</h3>
+        <p>Timeless tabletop classics from another era.</p>
+        <span class="card-tag">Games · Vintage</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=600&q=80" alt="Comic Books">
+      </div>
+      <div class="card-body">
+        <h3>Comic Books</h3>
+        <p>Rare issues and iconic covers.</p>
+        <span class="card-tag">Print · Golden Age</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="LEGO Classics">
+      </div>
+      <div class="card-body">
+        <h3>LEGO Classics</h3>
+        <p>Collector-grade vintage builds.</p>
+        <span class="card-tag">Toys · Sealed Sets</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── ART ───────────────────────────────────── -->
+<section class="section fade" id="art">
+  <div class="title">Art &amp; <em>Photography</em></div>
+  <div class="section-sub">The grain, the light, the moment suspended</div>
+
+  <div class="ornament">✦ ✦ ✦</div>
+  <div class="ornament-line"><span>Archive II</span></div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80" alt="Analog Photography">
+      </div>
+      <div class="card-body">
+        <h3>Analog Photography</h3>
+        <p>Moments preserved in grain and time.</p>
+        <span class="card-tag">35mm · Medium Format</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=600&q=80" alt="Street Culture">
+      </div>
+      <div class="card-body">
+        <h3>Street Culture</h3>
+        <p>Textures of life and memory.</p>
+        <span class="card-tag">Documentary · Urban</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── MEDIA ──────────────────────────────────── -->
+<section class="section fade" id="media">
+  <div class="title"><em>Cinema · Music · Literature</em></div>
+  <div class="section-sub">The art that outlasted its era</div>
+
+  <div class="ornament">✦ ✦ ✦</div>
+  <div class="ornament-line"><span>Archive III</span></div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&q=80" alt="Cinema">
+      </div>
+      <div class="card-body">
+        <h3>Cinema</h3>
+        <p>Vintage films and visual storytelling.</p>
+        <span class="card-tag">Film · 16mm · 35mm</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80" alt="Music">
+      </div>
+      <div class="card-body">
+        <h3>Music</h3>
+        <p>Analog sound and rare recordings.</p>
+        <span class="card-tag">Vinyl · Tape · Archive</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80" alt="Literature">
+      </div>
+      <div class="card-body">
+        <h3>Literature</h3>
+        <p>Lost texts and cultural archives.</p>
+        <span class="card-tag">Rare Books · Manuscripts</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">eL Zahir</div>
+  <div class="footer-tagline">Archive of Rare Culture &amp; Memory</div>
+  <div class="footer-links">
+    <a href="#collectibles">Collectibles</a>
+    <a href="#art">Art</a>
+    <a href="#media">Media</a>
+  </div>
+  <div class="footer-copy">© 2026 eL Zahir — Archive of Rare Culture</div>
+</footer>
+
+<!-- ─── TICKER ────────────────────────────────── -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Rare Collectibles</span>
+    <span>✦</span>
+    <span>Analog Photography</span>
+    <span>✦</span>
+    <span>Vintage Cinema</span>
+    <span>✦</span>
+    <span>مجموعة نادرة</span>
+    <span>✦</span>
+    <span>Lost Literature</span>
+    <span>✦</span>
+    <span>Vinyl & Tape Archives</span>
+    <span>✦</span>
+    <span>Street Culture</span>
+    <span>✦</span>
+    <span>تراث ثقافي</span>
+    <span>✦</span>
+    <span>Rare Collectibles</span>
+    <span>✦</span>
+    <span>Analog Photography</span>
+    <span>✦</span>
+    <span>Vintage Cinema</span>
+    <span>✦</span>
+    <span>مجموعة نادرة</span>
+    <span>✦</span>
+    <span>Lost Literature</span>
+    <span>✦</span>
+    <span>Vinyl & Tape Archives</span>
+    <span>✦</span>
+    <span>Street Culture</span>
+    <span>✦</span>
+    <span>تراث ثقافي</span>
+    <span>✦</span>
+  </div>
+</div>
+
+<script>
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('show')
+    }
+  })
+},{threshold:0.1})
+document.querySelectorAll('.fade').forEach(el=>observer.observe(el))
+</script>
+
+</body>
+</html>
