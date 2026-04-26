@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eL Zahir Marketplace</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+background:#050403;
+color:#f2e8cf;
+font-family:Inter;
+}
+
+/* HEADER */
+header{
+text-align:center;
+padding:2rem;
+font-family:"Cormorant Garamond";
+font-size:2rem;
+color:#d4af5a;
+letter-spacing:.1em;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:2rem;
+padding:2rem;
+max-width:1200px;
+margin:auto;
+}
+
+/* CARD */
+.card{
+background:#111;
+border-radius:20px;
+overflow:hidden;
+transition:.3s;
+border:1px solid rgba(212,175,90,0.2);
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:#d4af5a;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card-content{
+padding:1rem;
+}
+
+.card h3{
+font-family:"Cormorant Garamond";
+color:#d4af5a;
+margin:0 0 .5rem;
+}
+
+.price{
+margin:.5rem 0;
+font-weight:500;
+}
+
+/* BUTTONS */
+button{
+background:#d4af5a;
+border:none;
+padding:.5rem 1rem;
+border-radius:20px;
+cursor:pointer;
+margin-right:.5rem;
+}
+
+/* ADMIN PANEL */
+.admin{
+background:#0d0b08;
+padding:1.5rem;
+margin:2rem;
+border-radius:20px;
+max-width:800px;
+margin:auto;
+}
+
+input{
+padding:.5rem;
+margin:.3rem;
+border-radius:10px;
+border:none;
+width:150px;
+}
+</style>
+</head>
+
+<body>
+
+<header>eL Zahir Marketplace</header>
+
+<!-- ADMIN PANEL -->
+<div class="admin">
+<h3>Add Item</h3>
+<input id="title" placeholder="Title">
+<input id="desc" placeholder="Description">
+<input id="price" placeholder="Price">
+<input id="img" placeholder="Image URL">
+<button onclick="addItem()">Add</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const grid = document.getElementById("grid");
+
+// LOAD ITEMS
+function loadItems(){
+  grid.innerHTML = "";
+  fetch("/api/items")
+  .then(res=>res.json())
+  .then(data=>{
+    data.forEach(item=>{
+      const div=document.createElement("div");
+      div.className="card";
+
+      div.innerHTML=`
+        <img src="${item.image}">
+        <div class="card-content">
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <div class="price">$${item.price}</div>
+          <button onclick="buy(${item.id})">Buy</button>
+          <button onclick="deleteItem(${item.id})">Delete</button>
+        </div>
+      `;
+
+      grid.appendChild(div);
+    });
+  });
+}
+
+// ADD ITEM
+function addItem(){
+  const title=document.getElementById("title").value;
+  const description=document.getElementById("desc").value;
+  const price=document.getElementById("price").value;
+  const image=document.getElementById("img").value;
+
+  fetch("/api/items",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({title,description,price,image})
+  }).then(()=>{
+    loadItems();
+  });
+}
+
+// DELETE
+function deleteItem(id){
+  fetch("/api/items/"+id,{method:"DELETE"})
+  .then(()=>loadItems());
+}
+
+// BUY
+function buy(id){
+  fetch("/api/buy/"+id,{method:"POST"})
+  .then(res=>res.json())
+  .then(data=>alert(data.message));
+}
+
+loadItems();
+</script>
+
+</body>
+</html>
