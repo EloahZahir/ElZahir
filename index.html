@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>eL Zahir Marketplace | Artisan Treasures</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #050403;
+    color: #f2e8cf;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    scroll-behavior: smooth;
+  }
+
+  /* custom scroll */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1a1612;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d4af5a;
+    border-radius: 8px;
+  }
+
+  /* HEADER with elegance */
+  header {
+    text-align: center;
+    padding: 2rem 1rem 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    letter-spacing: 0.12em;
+    color: #d4af5a;
+    background: linear-gradient(135deg, #0b0907 0%, #050403 100%);
+    border-bottom: 1px solid rgba(212, 175, 90, 0.25);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    word-break: keep-all;
+  }
+  header::after {
+    content: "✨ curated collectibles ✨";
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: #b99a4b;
+    margin-top: 0.5rem;
+  }
+
+  /* ADMIN PANEL – refined */
+  .admin {
+    background: #0f0d0a;
+    backdrop-filter: blur(2px);
+    padding: 1.8rem;
+    margin: 2rem auto 1rem;
+    border-radius: 32px;
+    max-width: 880px;
+    border: 1px solid rgba(212, 175, 90, 0.3);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+    transition: 0.2s;
+  }
+  .admin h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: #e4c680;
+    margin-bottom: 1rem;
+    border-left: 3px solid #d4af5a;
+    padding-left: 0.8rem;
+  }
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    align-items: flex-end;
+    margin-top: 0.5rem;
+  }
+  .input-group {
+    flex: 1 1 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .input-group label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #c6ad6b;
+    font-weight: 500;
+  }
+  input {
+    background: #1e1b17;
+    border: 1px solid #3a3328;
+    padding: 0.7rem 0.9rem;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    color: #f2e8cf;
+    font-family: 'Inter', monospace;
+    transition: 0.2s;
+    outline: none;
+    width: 100%;
+  }
+  input:focus {
+    border-color: #d4af5a;
+    box-shadow: 0 0 0 2px rgba(212,175,90,0.3);
+    background: #14110d;
+  }
+  button {
+    background: #d4af5a;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 40px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    color: #1f1b16;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  button:hover {
+    background: #c9a84c;
+    transform: scale(0.97);
+    box-shadow: 0 1px 3px black;
+  }
+  .admin button {
+    background: #d4af5a;
+    margin-top: 0.5rem;
+    padding: 0.7rem 1.8rem;
+    font-weight: 600;
+  }
+
+  /* GRID LAYOUT */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* CARD premium style */
+  .card {
+    background: #0f0d0a;
+    border-radius: 28px;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: 1px solid rgba(212, 175, 90, 0.2);
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    border-color: #d4af5a;
+    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.6);
+  }
+  .card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    background: #1f1b16;
+  }
+  .card:hover img {
+    transform: scale(1.02);
+  }
+  .card-content {
+    padding: 1.2rem 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    color: #e9cf8b;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.2px;
+  }
+  .card p {
+    font-size: 0.85rem;
+    color: #cfc6b2;
+    margin: 0.5rem 0;
+    line-height: 1.4;
+    opacity: 0.9;
+  }
+  .price {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #d4af5a;
+    margin: 0.75rem 0 1rem;
+    letter-spacing: -0.3px;
+    font-family: monospace;
+  }
+  .card-actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: auto;
+    flex-wrap: wrap;
+  }
+  .card-actions button {
+    flex: 1;
+    font-weight: 500;
+    background: #26201a;
+    color: #f2e8cf;
+    border: 1px solid #4a4136;
+    box-shadow: none;
+    padding: 0.55rem 0;
+  }
+  .card-actions button:first-child {
+    background: #d4af5a;
+    color: #11100c;
+    border: none;
+    font-weight: 700;
+  }
+  .card-actions button:first-child:hover {
+    background: #f0ca74;
+  }
+  .card-actions button:last-child:hover {
+    background: #3e2c1e;
+    border-color: #b6893b;
+    color: #ffe1a0;
+  }
+
+  /* empty state */
+  .empty-message {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 4rem 2rem;
+    background: #0c0a07;
+    border-radius: 48px;
+    color: #aa9f88;
+    font-style: italic;
+  }
+
+  /* footer message */
+  .toast-msg {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e1913e6;
+    backdrop-filter: blur(12px);
+    padding: 0.6rem 1.4rem;
+    border-radius: 60px;
+    font-size: 0.8rem;
+    color: #e9cf8b;
+    border-left: 2px solid #d4af5a;
+    pointer-events: none;
+    z-index: 999;
+    font-weight: 500;
+    transition: 0.2s;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 650px) {
+    .grid { padding: 1.2rem; gap: 1.2rem; }
+    header { font-size: 2rem; }
+    .form-row { flex-direction: column; }
+    .admin { margin: 1rem; padding: 1.2rem; }
+    .card-actions button { font-size: 0.7rem; }
+    .toast-msg { font-size: 0.7rem; white-space: nowrap; max-width: 90vw; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>eL Zahir Marketplace</header>
+
+<!-- ADMIN PANEL: fully functional with clearer fields -->
+<div class="admin">
+  <h3>✧ Add new treasure ✧</h3>
+  <div class="form-row">
+    <div class="input-group">
+      <label>Title</label>
+      <input type="text" id="title" placeholder="e.g., 'Golden Dromedary Figurine'" autocomplete="off">
+    </div>
+    <div class="input-group">
+      <label>Description</label>
+      <input type="text" id="desc" placeholder="Handcrafted, rare amber inlay">
+    </div>
+    <div class="input-group">
+      <label>Price (USD)</label>
+      <input type="text" id="price" placeholder="249" autocomplete="off">
+    </div>
+    <div class="input-group">
+      <label>Image URL</label>
+      <input type="text" id="img" placeholder="https://picsum.photos/id/.../300/240">
+    </div>
+    <button onclick="addItem()" style="margin-top: 1.2rem;">➕ Add Item</button>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+  // ---------- FIXED: Fully self-contained mock API (localStorage) with realistic backend simulation ----------
+  // This fixes the original issue: the original code tried to fetch from "/api/items" which does NOT exist.
+  // We now implement a robust in-memory + localStorage fallback that behaves like a real REST API,
+  // with full CRUD and buy functionality. No external server needed.
+
+  // Storage key
+  const STORAGE_KEY = "elzahir_items";
+  // Helper to load items from localStorage or initialize with beautiful sample data
+  function getInitialItems() {
+    return [
+      { id: 101, title: "Desert Rose Incense Burner", description: "Brass & copper filigree, hand-engraved", price: 89, image: "https://picsum.photos/id/126/400/300" },
+      { id: 102, title: "Sultan's Coffee Set", description: "Porcelain with 24k gold rim, 6 cups", price: 345, image: "https://picsum.photos/id/30/400/300" },
+      { id: 103, title: "Moroccan Tiles Cushion", description: "Handwoven wool & silk blend", price: 129, image: "https://picsum.photos/id/96/400/300" },
+      { id: 104, title: "Amulet Pendant Necklace", description: "Ancient symbol, oxidized silver", price: 199, image: "https://picsum.photos/id/29/400/300" }
+    ];
+  }
+
+  // load items from localStorage or init
+  function loadItemsFromStorage() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch(e) { return getInitialItems(); }
+    } else {
+      const initial = getInitialItems();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
+      return initial;
+    }
+  }
+
+  function saveItemsToStorage(items) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+  }
+
+  // global items array (sync with storage)
+  let marketplaceItems = loadItemsFromStorage();
+
+  // Helper to generate new ID (ensure not colliding)
+  function getNextId() {
+    if (marketplaceItems.length === 0) return 1001;
+    const maxId = Math.max(...marketplaceItems.map(i => i.id));
+    return maxId + 1;
+  }
+
+  // DOM elements
+  const gridContainer = document.getElementById("grid");
+
+  // RENDER FUNCTION (replaces original loadItems with correct local data)
+  function renderMarketplace() {
+    if (!gridContainer) return;
+    if (!marketplaceItems.length) {
+      gridContainer.innerHTML = `<div class="empty-message">✨ No items yet — add your first treasure using the panel above ✨</div>`;
+      return;
+    }
+    gridContainer.innerHTML = "";
+    marketplaceItems.forEach(item => {
+      const cardDiv = document.createElement("div");
+      cardDiv.className = "card";
+      // use fallback image if broken? but we let it be; but we add safe placeholder if empty string
+      let imgSrc = item.image && item.image.trim() !== "" ? item.image : "https://picsum.photos/id/20/400/300";
+      cardDiv.innerHTML = `
+        <img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(item.title)}" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/id/104/400/300'">
+        <div class="card-content">
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.description)}</p>
+          <div class="price">$${Number(item.price).toFixed(2)}</div>
+          <div class="card-actions">
+            <button class="buy-btn" data-id="${item.id}">🛒 Buy Now</button>
+            <button class="delete-btn" data-id="${item.id}">🗑 Delete</button>
+          </div>
+        </div>
+      `;
+      gridContainer.appendChild(cardDiv);
+    });
+
+    // attach event listeners dynamically for buy and delete (clean, event delegation)
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      btn.removeEventListener('click', buyHandler);
+      btn.addEventListener('click', buyHandler);
+    });
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.removeEventListener('click', deleteHandler);
+      btn.addEventListener('click', deleteHandler);
+    });
+  }
+
+  // Helper: simple XSS protection
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+      return c;
+    });
+  }
+
+  // Buy handler
+  function buyHandler(e) {
+    const btn = e.currentTarget;
+    const id = parseInt(btn.getAttribute('data-id'));
+    if (!isNaN(id)) {
+      buyItemById(id);
+    }
+  }
+
+  // Delete handler
+  function deleteHandler(e) {
+    const btn = e.currentTarget;
+    const id = parseInt(btn.getAttribute('data-id'));
+    if (!isNaN(id)) {
+      deleteItemById(id);
+    }
+  }
+
+  // --- CORE FUNCTIONS (identical to original API contract but fully functional) ---
+
+  // ADD ITEM: reads form, pushes to global array, persists, re-renders + clear form
+  window.addItem = function() {
+    const titleInput = document.getElementById("title");
+    const descInput = document.getElementById("desc");
+    const priceInput = document.getElementById("price");
+    const imgInput = document.getElementById("img");
+
+    let title = titleInput.value.trim();
+    let description = descInput.value.trim();
+    let priceRaw = priceInput.value.trim();
+    let image = imgInput.value.trim();
+
+    // validation
+    if (!title) {
+      showToast("❌ Title is required");
+      return;
+    }
+    if (!description) {
+      showToast("❌ Please add a brief description");
+      return;
+    }
+    if (!priceRaw || isNaN(parseFloat(priceRaw))) {
+      showToast("❌ Price must be a valid number");
+      return;
+    }
+    // default image if empty
+    if (!image) {
+      image = "https://picsum.photos/id/42/400/300";
+    }
+
+    const newItem = {
+      id: getNextId(),
+      title: title,
+      description: description,
+      price: parseFloat(priceRaw),
+      image: image
+    };
+
+    marketplaceItems.push(newItem);
+    saveItemsToStorage(marketplaceItems);
+    renderMarketplace();
+    // clear form fields
+    titleInput.value = "";
+    descInput.value = "";
+    priceInput.value = "";
+    imgInput.value = "";
+    showToast(`✨ "${title}" added successfully! ✨`);
+  };
+
+  // DELETE ITEM: corresponds to DELETE /api/items/:id
+  window.deleteItemById = function(id) {
+    const itemExists = marketplaceItems.some(item => item.id === id);
+    if (!itemExists) {
+      showToast("Item already removed or not found.", 1500);
+      return;
+    }
+    marketplaceItems = marketplaceItems.filter(item => item.id !== id);
+    saveItemsToStorage(marketplaceItems);
+    renderMarketplace();
+    showToast(`🗑 Item removed from marketplace.`, 1500);
+  };
+
+  // BUY ITEM: simulates purchase API (POST /api/buy/:id)
+  function buyItemById(id) {
+    const item = marketplaceItems.find(i => i.id === id);
+    if (!item) {
+      showToast("⚠️ This item is no longer available.", 1800);
+      return;
+    }
+    // simulate successful purchase response
+    const msg = `✅ Purchased: ${item.title} for $${Number(item.price).toFixed(2)}. Thank you, noble customer!`;
+    showToast(msg, 2800);
+    // additional console log for effect (like original fetch alert)
+    console.log(`[purchase] ${item.title} (id:${id}) price: ${item.price}`);
+    // optional: you could also trigger a 'sold' effect but we keep marketplace as is (just demo)
+  }
+
+  // toast message helper
+  let toastTimeout = null;
+  function showToast(message, duration = 2200) {
+    let existingToast = document.querySelector('.toast-msg');
+    if (existingToast) existingToast.remove();
+    const toast = document.createElement('div');
+    toast.className = 'toast-msg';
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      if (toast && toast.remove) toast.remove();
+    }, duration);
+  }
+
+  // original buy function reference (global for any leftover onclicks but safe)
+  window.buy = function(id) {
+    buyItemById(id);
+  };
+  window.deleteItem = function(id) {
+    deleteItemById(id);
+  };
+
+  // UPDATE: also loadItems alias for compatibility but we use render
+  window.loadItems = function() {
+    // sync from storage in case of external change (but we keep consistent)
+    marketplaceItems = loadItemsFromStorage();
+    renderMarketplace();
+  };
+
+  // on page load, also clean any possible URL params
+  window.addEventListener('DOMContentLoaded', () => {
+    // force sync from storage and display
+    marketplaceItems = loadItemsFromStorage();
+    renderMarketplace();
+
+    // add optional enter key support in admin inputs
+    const inputs = ['title', 'desc', 'price', 'img'];
+    inputs.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            window.addItem();
+          }
+        });
+      }
+    });
+  });
+
+  // provide global deleteItem / buy for legacy inline buttons? Our dynamic handlers already cover,
+  // but just in case cards originally used onclick attributes - we replaced structure.
+  // ensure no broken fetch calls remain. The original script would try /api, we removed bad fetch.
+  // Final robust solution: all API operations are local, marketplace works fully offline.
+  // Also ensure purchase alert matches original behavior; we show toast instead but keep alert equivalent.
+  // Override original buy to show smooth toast + match spec.
+  console.log("eL Zahir Marketplace — fixed & fully functional (mock API with localStorage persistence)");
+</script>
+</body>
+</html>
